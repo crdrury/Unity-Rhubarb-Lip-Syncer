@@ -16,8 +16,12 @@ I like to start by posing the face using armature bones. Then I can select each 
 
 If you are adding blinking to the animation, all objects in the blink (face, eyelashes, etc.) need a shape key called **Blink**.
 
-If you are adding eyebrow movements, all objects involved will need shape keys call **Eyebrows Raised**, **Eyebrows Angry**, and **Eyebrows Sad**.
+If you are adding eyebrow movements, all objects involved will need shape keys call **Eyebrows Raised**, **Eyebrows Sad**, and **Eyebrows Angry**.
+
+![Blender Shape Keys](https://user-images.githubusercontent.com/39220609/97245481-80b6cf00-17d1-11eb-9e58-589626d5dcdb.png)
 
 These Shape Keys will be imported to Unity as BlendShapes with the same names.
 
-![Unity BlendShapes](Lip Syncer BlendShapes.png)
+![Unity BlendShapes](https://user-images.githubusercontent.com/39220609/97245311-261d7300-17d1-11eb-8c40-9f2c90f36f10.png)
+
+![Lip Syncer Editor GUI](https://user-images.githubusercontent.com/39220609/97245398-57963e80-17d1-11eb-8f12-5d563991add7.png)
