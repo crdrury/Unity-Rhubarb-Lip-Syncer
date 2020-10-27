@@ -12,17 +12,17 @@ Much of the process is automated, but there are some things that must be done ma
 
 3. Create BlendShapes for each mouth shape listed in the Rhubarb README. In Blender these can be [created as "Shape Keys"](https://docs.blender.org/manual/en/latest/animation/shape_keys/introduction.html). Note that you will need to add Shape Keys to each object that will be animated for mouth shapes (face, teeth, tongue, facial hair, etc.)
 
-I like to start by posing the face using armature bones. Then I can select each object in the Modifiers view, click Copy on the armature modifier, then Apply As Shape Key on the copy and rename the key in the Object Data Properties view. Once all objects have a shape key for the current mouth shape, clear the pose and start again on the next mouth shape. When you are done, each object involved in mouth shapes should have shape keys called **X** (no mouth shape), **A**, **B**, **C**, **D**, **E**, **F**, **G**, and **H**. It is important that **X** is first in the list of shapes, so it will be used as the basis shape. If it is not first in the list, it can be selected and moved to the top of the list with the arrow to the right of the Shape Keys panel.
+    I like to start by posing the face using armature bones. Then I can select each object in the Modifiers view, click Copy on the armature modifier, then Apply As Shape Key on the copy and rename the key in the Object Data Properties view. Once all objects have a shape key for the current mouth shape, clear the pose and start again on the next mouth shape. When you are done, each object involved in mouth shapes should have shape keys called **X** (no mouth shape), **A**, **B**, **C**, **D**, **E**, **F**, **G**, and **H**. It is important that **X** is first in the list of shapes, so it will be used as the basis shape. If it is not first in the list, it can be selected and moved to the top of the list with the arrow to the right of the Shape Keys panel.
 
-If you are adding blinking to the animation, all objects in the blink (face, eyelashes, etc.) need a shape key called **Blink**.
+    If you are adding blinking to the animation, all objects in the blink (face, eyelashes, etc.) need a shape key called **Blink**.
 
-If you are adding eyebrow movements, all objects involved will need shape keys call **Eyebrows Raised**, **Eyebrows Sad**, and **Eyebrows Angry**.
+    If you are adding eyebrow movements, all objects involved will need shape keys call **Eyebrows Raised**, **Eyebrows Sad**, and **Eyebrows Angry**.
 
-![Blender Shape Keys](https://user-images.githubusercontent.com/39220609/97245481-80b6cf00-17d1-11eb-9e58-589626d5dcdb.png)
+    ![Blender Shape Keys](https://user-images.githubusercontent.com/39220609/97245481-80b6cf00-17d1-11eb-9e58-589626d5dcdb.png)
 
-These Shape Keys will be imported to Unity as BlendShapes with the same names. Note that **X** is no listed, since it is the basis shape, i.e. the shape when all BlendShapes are set to 0.
+    These Shape Keys will be imported to Unity as BlendShapes with the same names. Note that **X** is no listed, since it is the basis shape, i.e. the shape when all BlendShapes are set to 0.
 
-![Unity BlendShapes](https://user-images.githubusercontent.com/39220609/97245311-261d7300-17d1-11eb-8c40-9f2c90f36f10.png)
+    ![Unity BlendShapes](https://user-images.githubusercontent.com/39220609/97245311-261d7300-17d1-11eb-8c40-9f2c90f36f10.png)
 
 
 ## Using the GUI
@@ -33,6 +33,7 @@ Now you can add the Lip Syncer script to any game object in your scene. Set your
 
 **Parent Object-** Animated objects must be this object, or children of this object. The parent object must have an Animator attached to it.
 **Mouth Objects-** References to all game objects that have mouth shape keys for this animation.
+
 **Source Audio-** Audio file containing the dialog to be lip synced.
 **Source Audio Script (Optional)-** A text transcription of the dialog in **Source Audio**. If included, the Rhubarb analysis will give more accurate results.
 
