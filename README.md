@@ -1,6 +1,6 @@
 # Unity Rhubarb Lip Syncer
 
-This is a Unity Editor script for automating lip sync animations using [Rhubarb Lip Sync](https://github.com/DanielSWolf/rhubarb-lip-sync). Currently it is only fully functional on Windows. Theoretically Mac and Linux should be usable with a few extra steps, but this is currently untested. Steps to do so are at the bottom of this page. The following prerequsites are still required for this approach.
+This is a Unity Editor script for automating lip sync animations using [Rhubarb Lip Sync](https://github.com/DanielSWolf/rhubarb-lip-sync). Currently it is only fully functional on Windows. Theoretically Mac and Linux should be usable with a few extra steps, but this is currently untested. Steps to do so are at the bottom of this page. The following prerequisites are still required for this approach.
 
 ## Prerequisites
 
@@ -74,6 +74,6 @@ eg.
 
 or
 
-> rhubarb -o "Test Animation Mouth Shapes.txt" "testdialog.wav" "testdialogscript.txt"
+> rhubarb -o "Test Animation Mouth Shapes.txt" "testdialog.wav" -d "testdialogscript.txt"
 
 Once Rhubarb has finished running, the resulting phenome list file can be passed to the Phenome List field in the Lip Syncer script and the **Generate Animation From Text** button may be used.
