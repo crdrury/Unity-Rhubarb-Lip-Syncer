@@ -20,7 +20,7 @@ Much of the process is automated, but there are some things that must be done ma
 
     ![Blender Shape Keys](https://user-images.githubusercontent.com/39220609/97245481-80b6cf00-17d1-11eb-9e58-589626d5dcdb.png)
 
-    These Shape Keys will be imported to Unity as BlendShapes with the same names. Note that **X** is no listed, since it is the basis shape, i.e. the shape when all BlendShapes are set to 0.
+    These Shape Keys will be imported to Unity as BlendShapes with the same names. Note that **X** is not listed, since it is the basis shape, i.e. the shape when all BlendShapes are set to 0.
 
     ![Unity BlendShapes](https://user-images.githubusercontent.com/39220609/97245311-261d7300-17d1-11eb-8c40-9f2c90f36f10.png)
 
@@ -31,23 +31,23 @@ Now you can add the Lip Syncer script to any game object in your scene. Set your
 
 ![Lip Syncer Editor GUI](https://user-images.githubusercontent.com/39220609/97245398-57963e80-17d1-11eb-8f12-5d563991add7.png)
 
-**Parent Object-** Animated objects must be this object, or children of this object. The parent object must have an Animator attached to it.
-**Mouth Objects-** References to all game objects that have mouth shape keys for this animation.
+* **Parent Object-** Animated objects must be this object, or children of this object. The parent object must have an Animator attached to it.
+* **Mouth Objects-** References to all game objects that have mouth shape keys for this animation.
 
-**Source Audio-** Audio file containing the dialog to be lip synced.
-**Source Audio Script (Optional)-** A text transcription of the dialog in **Source Audio**. If included, the Rhubarb analysis will give more accurate results.
+* **Source Audio-** Audio file containing the dialog to be lip synced.
+* **Source Audio Script (Optional)-** A text transcription of the dialog in **Source Audio**. If included, the Rhubarb analysis will give more accurate results.
 
-**Animate Blinks-** Whether or not to add slightly randomized blinks to the animation.
-**Blink Objects-** References to all game objects that have blink shape keys for this animation.
-**Blink Min-** The minimum amount of time between blinks, in seconds.
-**Blink Max-** The maximum amount of time between blinks, in seconds.
-**Blink Length-** The duration of a blink, in seconds.
+* **Animate Blinks-** Whether or not to add slightly randomized blinks to the animation.
+* **Blink Objects-** References to all game objects that have blink shape keys for this animation.
+* **Blink Min-** The minimum amount of time between blinks, in seconds.
+* **Blink Max-** The maximum amount of time between blinks, in seconds.
+* **Blink Length-** The duration of a blink, in seconds.
 
-**Animate Eyebrows-** Whether or not to add randomized eyebrow movements to the animation.
-**Eyebrow Objects-** References to all game objects that have eyebrow shape keys for this animation.
+* **Animate Eyebrows-** Whether or not to add randomized eyebrow movements to the animation.
+* **Eyebrow Objects-** References to all game objects that have eyebrow shape keys for this animation.
 
-**Animation Name-** What to name the resulting animation. Saved to Assets/Animations/Resources/.
-**Phenome List-** A text file with a list of mouth shapes and timestamps. This will be generated and referenced by the Rhubarb analysis.
+* **Animation Name-** What to name the resulting animation. Saved to Assets/Animations/Resources/.
+* **Phenome List-** A text file with a list of mouth shapes and timestamps. This will be generated and referenced by the Rhubarb analysis.
 
 **Analyze Audio And Generate Animation-** Opens a command line window and runs Rhubarb to generate a phenome list. When Rhubarb is done running, create and save the animation using the phenome list.
 
