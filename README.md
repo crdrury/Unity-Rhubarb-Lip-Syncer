@@ -69,8 +69,11 @@ The only part of the script that should be Window-specific is the command-line e
 **sourceAudioScript-** optional text transcription of the audio file for more accurate results. If omitted, omit the -d as well.
 
 eg.
+
 > rhubarb -o "Test Animation Mouth Shapes.txt" "testdialog.wav"
+
 or
+
 > rhubarb -o "Test Animation Mouth Shapes.txt" "testdialog.wav" "testdialogscript.txt"
 
 Once Rhubarb has finished running, the resulting phenome list file can be passed to the Phenome List field in the Lip Syncer script and the **Generate Animation From Text** button may be used.
