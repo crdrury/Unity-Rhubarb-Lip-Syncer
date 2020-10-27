@@ -94,6 +94,8 @@ public class LipSyncer : MonoBehaviour
         if (sourceAudioScript != null)
             args += " -d \"" + AssetDatabase.GetAssetPath(sourceAudioScript) + "\"";
 
+        print(args);
+
         ProcessStartInfo info = new ProcessStartInfo()
             {
                 WorkingDirectory = dataPath,
@@ -154,6 +156,11 @@ public class LipSyncer : MonoBehaviour
 
         AssetDatabase.CreateAsset(resultAnimation, "Assets/Animations/Resources/" + animationName + ".anim");
 
+        /*
+        This code is specific to how I'm adding the animations in my game.
+        It's not necessary for creating the animation and can break things if your game is not set up the same way.
+        I'm leaving it commented out in case you're curious how I'm using them for some reason.
+         
         AudioSource audioSource = parentObject.GetComponent<AudioSource>();
         if (audioSource == null)
         {
@@ -178,6 +185,7 @@ public class LipSyncer : MonoBehaviour
 
             AssetDatabase.CreateAsset(charOverride, "Assets/Animations/Resources/" + parentObject.name + "_Override.overrideController");
         }
+        */
 
         // Add mouth shape curves
         AnimationCurve curve;
