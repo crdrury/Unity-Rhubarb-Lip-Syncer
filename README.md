@@ -1,6 +1,6 @@
 # Unity Rhubarb Lip Syncer
 
-This is a Unity Editor script for automating lip sync animations using [Rhubarb Lip Sync](https://github.com/DanielSWolf/rhubarb-lip-sync). Currently it is only fully functional on Windows.
+This is a Unity Editor script for automating lip sync animations using [Rhubarb Lip Sync](https://github.com/DanielSWolf/rhubarb-lip-sync). Currently it is only fully functional on Windows. Theoretically Mac and Linux should be usable with a few extra steps, but this is currently untested. Steps to do so are at the bottom of this page. The following prerequsites are still required for this approach.
 
 ## Prerequisites
 
@@ -23,6 +23,9 @@ If you are adding eyebrow movements, all objects involved will need shape keys c
 These Shape Keys will be imported to Unity as BlendShapes with the same names. Note that **X** is no listed, since it is the basis shape, i.e. the shape when all BlendShapes are set to 0.
 
 ![Unity BlendShapes](https://user-images.githubusercontent.com/39220609/97245311-261d7300-17d1-11eb-8c40-9f2c90f36f10.png)
+
+
+## Using the GUI
 
 Now you can add the Lip Syncer script to any game object in your scene. Set your object references and variables (detailed below).
 
@@ -48,3 +51,25 @@ Now you can add the Lip Syncer script to any game object in your scene. Set your
 **Analyze Audio And Generate Animation-** Opens a command line window and runs Rhubarb to generate a phenome list. When Rhubarb is done running, create and save the animation using the phenome list.
 
 **Generate Animation From Text-** If Rhubarb has already generated a phenome list, you can skip re-analyzing the audio and only re-do the animation. For instance, you may want to adjust your blink times and re-animate. The animation portion runs much quicker than the audio analysis portion, so analysis can be skipped if it is unnecessary.
+
+
+## Steps For Partial Functionality on Mac/Linux
+
+The only part of the script that should be Window-specific is the command-line execution of Rhubarb. Theoretically it should be possible to manually run the analysis and provide the phenome list to the animation script.
+
+1. Download and install [Rhubarb Lip Sync](https://github.com/DanielSWolf/rhubarb-lip-sync).
+
+2. In the command line, navigate to your audio file and run Rhubarb something like this:
+
+> rhubarb -o "**phenomeList**" "**sourceAudio**" [-d "**sourceAudioScript**"]
+
+**phenomeList-** filename for the phenome list to be saved to.
+**sourceAudio-** filename of the dialog audio file.
+**sourceAudioScript-** optional text transcription of the audio file for more accurate results. If omitted, omit the -d as well.
+
+eg.
+> rhubarb -o "Test Animation Mouth Shapes.txt" "testdialog.wav"
+or
+> rhubarb -o "Test Animation Mouth Shapes.txt" "testdialog.wav" "testdialogscript.txt"
+
+Once Rhubarb has finished running, the resulting phenome list file can be passed to the Phenome List field in the Lip Syncer script and the **Generate Animation From Text** button may be used.
