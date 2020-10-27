@@ -31,7 +31,7 @@ Now you can add the Lip Syncer script to any game object in your scene. Set your
 
 ![Lip Syncer Editor GUI](https://user-images.githubusercontent.com/39220609/97245398-57963e80-17d1-11eb-8f12-5d563991add7.png)
 
-* **Parent Object-** Animated objects must be this object, or children of this object. The parent object must have an Animator attached to it.
+* **Parent Object-** Animated objects must be this object, or children of this object. The animation should ultimately be applied to this object.
 * **Mouth Objects-** References to all game objects that have mouth shape keys for this animation.
 
 * **Source Audio-** Audio file containing the dialog to be lip synced.
