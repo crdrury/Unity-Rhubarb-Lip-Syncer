@@ -1,6 +1,7 @@
 # Unity Rhubarb Lip Syncer
 
 [![Unity Rhubarb Lip Syncer Demo](https://img.youtube.com/vi/pilu9Cp5JTs/0.jpg)](https://www.youtube.com/watch?v=pilu9Cp5JTs)
+
 *Lip Sync Demo on YouTube*
 
 This is a Unity Editor script for automating lip sync animations using [Rhubarb Lip Sync](https://github.com/DanielSWolf/rhubarb-lip-sync). Currently it is only fully functional on Windows. Theoretically Mac and Linux should be usable with a few extra steps, but this is currently untested. Steps to do so are at the bottom of this page. The following prerequisites are still required for this approach.
