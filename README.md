@@ -79,6 +79,10 @@ Now you can add the LipSyncer3D Script to any game object in your scene. Set you
 
 # 2D Workflow
 
+[![Unity Rhubarb Lip Syncer 2D Demo](https://img.youtube.com/vi/V2-M-fjaJcs/0.jpg)](https://www.youtube.com/watch?v=V2-M-fjaJcs)
+
+*2D Lip Sync Walkthrough Video on YouTube*
+
 ## Setting up for 2D Animations
 
 1. Draw or download image sprites for each mouth shape listed in the [Rhubarb README](https://github.com/DanielSWolf/rhubarb-lip-sync#user-content-mouth-shapes).
