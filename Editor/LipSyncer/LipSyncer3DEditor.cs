@@ -1,84 +1,56 @@
-﻿using UnityEditor;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(LipSyncer))]
-public class LipSyncerEditor : Editor
+[CustomEditor(typeof(LipSyncer3D))]
+public class LipSyncer3DEditor : LipSyncerEditor
 {
-    SerializedProperty parentObject, mouthObjects, animateBlinks, blinkObjects, animateEyebrows, eyebrowObjects, sourceAudio, sourceAudioScript, phenomeList, animationName, blinkMin, blinkMax, blinkLength;
-    bool[] arrayExpanded = new bool[3];
+    SerializedProperty mouthObjects, mouthIntensity, blinkObjects, blinkIntensity, eyebrowObjects, eyebrowIntensityMin, eyebrowIntensityMax, animateBlinks, blinkMin, blinkMax, blinkLength, animateEyebrows;
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
-
-        parentObject = serializedObject.FindProperty("parentObject");
+        base.OnEnable();
         mouthObjects = serializedObject.FindProperty("mouthObjects");
-        animateBlinks = serializedObject.FindProperty("animateBlinks");
+        mouthIntensity = serializedObject.FindProperty("mouthIntensity");
         blinkObjects = serializedObject.FindProperty("blinkObjects");
-        animateEyebrows = serializedObject.FindProperty("animateEyebrows");
+        blinkIntensity = serializedObject.FindProperty("blinkIntensity");
         eyebrowObjects = serializedObject.FindProperty("eyebrowObjects");
-        sourceAudio = serializedObject.FindProperty("sourceAudio");
-        sourceAudioScript = serializedObject.FindProperty("sourceAudioScript");
-        phenomeList = serializedObject.FindProperty("phenomeList");
-        animationName = serializedObject.FindProperty("animationName");
+        eyebrowIntensityMin = serializedObject.FindProperty("eyebrowIntensityMin");
+        eyebrowIntensityMax = serializedObject.FindProperty("eyebrowIntensityMax");
+        animateBlinks = serializedObject.FindProperty("animateBlinks");
         blinkMin = serializedObject.FindProperty("blinkMin");
         blinkMax = serializedObject.FindProperty("blinkMax");
         blinkLength = serializedObject.FindProperty("blinkLength");
+        animateEyebrows = serializedObject.FindProperty("animateEyebrows");
     }
 
     public override void OnInspectorGUI()
     {
-        serializedObject.Update();
+        base.OnInspectorGUI();
 
-        EditorGUILayout.PropertyField(parentObject);
         ArrayGUI(serializedObject, "mouthObjects", 0);
-        EditorGUILayout.PropertyField(sourceAudio);
-        EditorGUILayout.PropertyField(sourceAudioScript);
+        EditorGUILayout.PropertyField(mouthIntensity);
         EditorGUILayout.Space();
 
-        EditorGUI.BeginChangeCheck();
         EditorGUILayout.PropertyField(animateBlinks);
-        EditorGUI.EndChangeCheck();
-        EditorGUI.BeginDisabledGroup(!animateBlinks.boolValue);
+        GUI.enabled = animateBlinks.boolValue;
         ArrayGUI(serializedObject, "blinkObjects", 1);
         EditorGUILayout.PropertyField(blinkMin);
         EditorGUILayout.PropertyField(blinkMax);
         EditorGUILayout.PropertyField(blinkLength);
-        EditorGUI.EndDisabledGroup();
+        EditorGUILayout.PropertyField(blinkIntensity);
         EditorGUILayout.Space();
+        GUI.enabled = true;
 
-        EditorGUI.BeginChangeCheck();
         EditorGUILayout.PropertyField(animateEyebrows);
-        EditorGUI.EndChangeCheck();
-        EditorGUI.BeginDisabledGroup(!animateEyebrows.boolValue);
+        GUI.enabled = animateEyebrows.boolValue;
         ArrayGUI(serializedObject, "eyebrowObjects", 2);
-        EditorGUI.EndDisabledGroup();
-        EditorGUILayout.Space();
+        EditorGUILayout.PropertyField(eyebrowIntensityMin);
+        EditorGUILayout.PropertyField(eyebrowIntensityMax);
+        GUI.enabled = true;
 
-        EditorGUILayout.PropertyField(animationName);
-
-        EditorGUI.BeginChangeCheck();
-        EditorGUILayout.PropertyField(phenomeList);
-        EditorGUI.EndChangeCheck();
-
-        EditorGUILayout.Space();
-
-        if (GUILayout.Button("Analyze Audio And Generate Animation"))
-        {
-            LipSyncer ls = target as LipSyncer;
-            ls.RhubarbAnalysis();
-        }
-
-        EditorGUILayout.Space();
-
-        EditorGUI.BeginDisabledGroup(phenomeList.objectReferenceValue == null);
-        if (GUILayout.Button("Generate Animation From Text"))
-        {
-            LipSyncer ls = target as LipSyncer;
-            ls.GenerateAnimation();
-        }
-        EditorGUI.EndDisabledGroup();
-
-        serializedObject.ApplyModifiedProperties();
+        LowerGUI();
     }
 
     void ArrayGUI(SerializedObject obj, string name, int arrayNum)
