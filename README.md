@@ -16,7 +16,7 @@ Much of the process is automated, but there are some things that must be done ma
 
 # 3D Workflow
 
-[![Unity Rhubarb Lip Syncer 3D Demo](https://img.youtube.com/vi/lFZlJYirG1Y/0.jpg)](https://www.youtube.com/watch?v=lFZlJYirG1Y)
+[![Unity Rhubarb Lip Syncer 3D Demo](https://img.youtube.com/vi/lFZlJYirG1Y/1.jpg)](https://www.youtube.com/watch?v=lFZlJYirG1Y)
 
 *3D Lip Sync Walkthrough Video on YouTube*
 
