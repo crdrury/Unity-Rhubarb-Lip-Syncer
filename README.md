@@ -16,6 +16,10 @@ Much of the process is automated, but there are some things that must be done ma
 
 # 3D Workflow
 
+[![Unity Rhubarb Lip Syncer 3D Demo](https://img.youtube.com/vi/lFZlJYirG1Y/0.jpg)](https://www.youtube.com/watch?v=lFZlJYirG1Y)
+
+*3D Lip Sync Walkthrough Video on YouTube*
+
 ## Setting up for 3D Animations
 
 I'll be describing the setup using Blender. The actual process may be different in other 3D modeling software, but the the goal is to create Blend Shapes, which are supporting in most modeling software.
