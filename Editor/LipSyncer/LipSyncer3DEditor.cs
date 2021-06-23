@@ -6,7 +6,7 @@ using UnityEngine;
 [CustomEditor(typeof(LipSyncer3D))]
 public class LipSyncer3DEditor : LipSyncerEditor
 {
-    SerializedProperty mouthObjects, mouthIntensity, blinkObjects, blinkIntensity, eyebrowObjects, eyebrowIntensityMin, eyebrowIntensityMax, animateBlinks, blinkMin, blinkMax, blinkLength, animateEyebrows;
+    SerializedProperty mouthObjects, mouthIntensity, blinkObjects, blinkIntensity, eyebrowObjects, eyebrowIntensityMin, eyebrowIntensityMax, animateBlinks, blinkMin, blinkMax, blinkLength, animateEyebrows, AVSync;
 
     protected override void OnEnable()
     {
@@ -23,6 +23,7 @@ public class LipSyncer3DEditor : LipSyncerEditor
         blinkMax = serializedObject.FindProperty("blinkMax");
         blinkLength = serializedObject.FindProperty("blinkLength");
         animateEyebrows = serializedObject.FindProperty("animateEyebrows");
+        AVSync = serializedObject.FindProperty("AVSync");
     }
 
     public override void OnInspectorGUI()
@@ -49,6 +50,9 @@ public class LipSyncer3DEditor : LipSyncerEditor
         EditorGUILayout.PropertyField(eyebrowIntensityMin);
         EditorGUILayout.PropertyField(eyebrowIntensityMax);
         GUI.enabled = true;
+
+//        EditorGUILayout.Space();
+//        EditorGUILayout.PropertyField(AVSync);
 
         LowerGUI();
     }

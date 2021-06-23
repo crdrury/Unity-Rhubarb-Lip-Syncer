@@ -6,9 +6,11 @@ using UnityEngine;
 [CustomEditor(typeof(LipSyncer))]
 public abstract class LipSyncerEditor : Editor
 {
-    protected SerializedProperty parentObject, sourceAudio, sourceAudioScript, phonemeList, animationName;
+    protected SerializedProperty parentObject, sourceAudio, sourceAudioScript, phonemeList, animationName, extendG, extendH, extendX, phonetic;
     protected bool[] arrayExpanded = new bool[3];
-    
+
+    bool extendedShapesGroup = true;
+
     protected virtual void OnEnable()
     {
         parentObject = serializedObject.FindProperty("parentObject");
@@ -16,6 +18,10 @@ public abstract class LipSyncerEditor : Editor
         sourceAudioScript = serializedObject.FindProperty("sourceAudioScript");
         phonemeList = serializedObject.FindProperty("phonemeList");
         animationName = serializedObject.FindProperty("animationName");
+        extendG = serializedObject.FindProperty("extendG");
+        extendH = serializedObject.FindProperty("extendH");
+        extendX = serializedObject.FindProperty("extendX");
+        phonetic = serializedObject.FindProperty("phonetic");
     }
 
     public override void OnInspectorGUI()
@@ -25,6 +31,17 @@ public abstract class LipSyncerEditor : Editor
         EditorGUILayout.PropertyField(parentObject);
         EditorGUILayout.PropertyField(sourceAudio);
         EditorGUILayout.PropertyField(sourceAudioScript);
+        EditorGUILayout.Space();
+
+        extendedShapesGroup = EditorGUILayout.BeginToggleGroup("Extended Mouth Shapes", extendedShapesGroup);
+        extendG.boolValue = EditorGUILayout.Toggle("G", extendG.boolValue);
+        extendH.boolValue = EditorGUILayout.Toggle("H", extendH.boolValue);
+        extendX.boolValue = EditorGUILayout.Toggle("X", extendX.boolValue);
+
+        EditorGUILayout.EndToggleGroup();
+        EditorGUILayout.Space();
+
+        EditorGUILayout.PropertyField(phonetic);
         EditorGUILayout.Space();
     }
 

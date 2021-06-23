@@ -32,6 +32,8 @@ public class LipSyncer3D : LipSyncer
     public float blinkLength;
     [Tooltip("Enable eyebrow animation")]
     public bool animateEyebrows = true;
+    [Tooltip("Delay the visual animation in seconds")]
+    public float AVSync;
     
 
     List<float>[] mouthList;
@@ -96,12 +98,12 @@ public class LipSyncer3D : LipSyncer
                 currentIndex = LipSyncConstants.MouthShape.FindIndex(param[1].Contains);
                 if (!s.Trim().Equals("X"))
                 {
-                    mouthKeyframe[currentIndex].Add(new Keyframe(float.Parse(param[0]) - .125f, 0f));
-                    mouthKeyframe[currentIndex].Add(new Keyframe(float.Parse(param[0]), mouthIntensity));
+                    mouthKeyframe[currentIndex].Add(new Keyframe(float.Parse(param[0])  + AVSync - .125f, 0f));
+                    mouthKeyframe[currentIndex].Add(new Keyframe(float.Parse(param[0]) + AVSync, mouthIntensity));
                 }
                 if (lastIndex != -1)
                 {
-                    mouthKeyframe[lastIndex].Add(new Keyframe(float.Parse(param[0]), 0f));
+                    mouthKeyframe[lastIndex].Add(new Keyframe(float.Parse(param[0]) + AVSync, 0f));
                 }
                 lastIndex = currentIndex;
             }

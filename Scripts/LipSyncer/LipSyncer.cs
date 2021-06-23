@@ -16,8 +16,19 @@ public abstract class LipSyncer : MonoBehaviour
     public TextAsset phonemeList;
     [Tooltip("Animation will be saved to " + LipSyncConstants.AnimationDirectory + "[Animation Name].anim")]
     public string animationName;
+    [Tooltip("G shape- 'F' or 'V' sound")]
+    public bool extendG = true;
+    [Tooltip("H shape- 'L' sound")]
+    public bool extendH = true;
+    [Tooltip("X shape- Neutral resting position")]
+    public bool extendX = true;
+    [Tooltip("Include all Rhubarb extended mouth shapes")]
+    public bool extendedMouthShapeGroup;
+    [Tooltip("Use phonetic speech recognizer for non-English speech")]
+    public bool phonetic = false;
 
     protected bool error;
+    protected string outputFile;
 
     // Start is called before the first frame update
     public void Start()
@@ -56,12 +67,20 @@ public abstract class LipSyncer : MonoBehaviour
         string dataPath = Application.dataPath;
         string audioPath = AssetDatabase.GetAssetPath(sourceAudio);
         string outputAssetNameAddition = " - Mouth Shapes";
-        string outputFile = audioPath.Substring(0, audioPath.LastIndexOf(".")) + outputAssetNameAddition + ".txt";
-        string args = "/C cd ../ && echo \"Generating phoneme list from audio. Window will close when finished.\" && rhubarb -o \"" + outputFile + "\" \"" + audioPath + "\"";
+        outputFile = audioPath.Substring(0, audioPath.LastIndexOf(".")) + outputAssetNameAddition + ".txt";
+        string args = "/C cd ../ && echo This window will close automatically when finished. && rhubarb -o \"" + outputFile + "\"";
+        string extend = "\"" + (extendG ? "G" : "") + (extendH ? "H" : "") + (extendX ? "X" : "") + "\"";
+        if (!extend.Equals("\"GHX\""))
+            args += " --extendedShapes " + extend;
+
+        args += (phonetic ? " -r phonetic" : "");
+
         if (sourceAudioScript != null)
             args += " -d \"" + AssetDatabase.GetAssetPath(sourceAudioScript) + "\"";
 
-        print(args);
+        args +=  " \"" + audioPath + "\"";
+
+//        print(args);
 
         ProcessStartInfo info = new ProcessStartInfo()
         {
@@ -79,8 +98,6 @@ public abstract class LipSyncer : MonoBehaviour
 
     IEnumerator FindPhonemeFile(string filename)
     {
-        print("HIST");
-
         while (phonemeList == null)
         {
             phonemeList = Resources.Load(filename) as TextAsset;

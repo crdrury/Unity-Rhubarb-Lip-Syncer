@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LipSyncAnimator2D : MonoBehaviour
+public class LipSyncAnimator2D : LipSyncAnimator
 {
     [Tooltip("Mouth sprite filenames before shape letter, e.g. 'Character2_Mouth_'")]
     public string mouthPrefix;
@@ -13,7 +13,6 @@ public class LipSyncAnimator2D : MonoBehaviour
     [Tooltip("Delay the visual animation to line up audio and video (in seconds)")]
     public float AVSync;
 
-    AudioSource audioSource;
     TextAsset lipSyncAnimation;
 
     List<LipSpriteSwap> mouthKeyframe = new List<LipSpriteSwap>();
@@ -26,12 +25,9 @@ public class LipSyncAnimator2D : MonoBehaviour
     float fadeCount;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        if ((audioSource = GetComponent<AudioSource>()) == null)
-        {
-            gameObject.AddComponent(typeof(AudioSource));
-        }
+        base.Start();
 
         mouthSprites = new Sprite[LipSyncConstants.MouthShape.Count];
         for (int i = 0; i < mouthSprites.Length; i++)
@@ -48,8 +44,9 @@ public class LipSyncAnimator2D : MonoBehaviour
         mouthFadeRenderer.sprite = spriteRenderer.sprite;
     }
 
-    public void PlayAnimation(string animationName)
+    public override void PlayAnimation(string audioName, string animationName)
     {
+        base.PlayAnimation(audioName, animationName);
         StartCoroutine(Animate(animationName));
     }
 
@@ -70,7 +67,10 @@ public class LipSyncAnimator2D : MonoBehaviour
             if (!mouthLines[i].Trim().Equals(""))
             {
                 param = mouthLines[i].Split('\t');
-                mouthKeyframe.Add(new LipSpriteSwap(float.Parse(param[0]), LipSyncConstants.MouthShape.FindIndex(param[1].Contains)));
+                if (param.Length == 2)
+                {
+                    mouthKeyframe.Add(new LipSpriteSwap(float.Parse(param[0]), LipSyncConstants.MouthShape.FindIndex(param[1].Contains)));
+                }
             }
         }
 
@@ -80,8 +80,9 @@ public class LipSyncAnimator2D : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
+        base.Update();
         if (timer >= 0)
         {
             fadeColor.a = (fadeCount--) / (transitionFrames + 1);

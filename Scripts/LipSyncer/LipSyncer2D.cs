@@ -38,12 +38,14 @@ public class LipSyncer2D : LipSyncer
         }
         audioSource.clip = sourceAudio;
 
-        AssetDatabase.CreateAsset(new TextAsset(), LipSyncConstants.AnimationDirectory + animationName);
-        AssetDatabase.SaveAssets();
-        File.WriteAllText(Application.dataPath + LipSyncConstants.AnimationLocalDirectory + animationName, sourceAudio.name + "\n" + phonemeList.text);
-        File.Delete(LipSyncConstants.AnimationDirectory + animationName + ".txt");
-        File.Delete(LipSyncConstants.AnimationDirectory + animationName + ".meta");
-        File.Move(LipSyncConstants.AnimationDirectory + animationName, LipSyncConstants.AnimationDirectory + animationName + ".txt");
+//        AssetDatabase.CreateAsset(new TextAsset(), LipSyncConstants.AnimationDirectory + animationName);
+//        AssetDatabase.SaveAssets();
+//        File.WriteAllText(Application.dataPath + LipSyncConstants.AnimationLocalDirectory + animationName, sourceAudio.name + "\n" + phonemeList.text);
+//        File.Delete(LipSyncConstants.AnimationDirectory + animationName + ".txt");
+//        File.Delete(LipSyncConstants.AnimationDirectory + animationName + ".meta");
+//        File.Move(LipSyncConstants.AnimationDirectory + animationName, LipSyncConstants.AnimationDirectory + animationName + ".txt");
+        File.Copy(outputFile, LipSyncConstants.AnimationDirectory + animationName + ".txt", true);
+//        AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
 
         if (parentObject.GetComponent<LipSyncAnimator2D>() == null)

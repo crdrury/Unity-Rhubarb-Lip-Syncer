@@ -3,30 +3,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LipSyncAnimator3D : MonoBehaviour
+public class LipSyncAnimator3D : LipSyncAnimator
 {
-    AudioSource audioSource;
     Animator animator;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        base.Start();
+
         animator = GetComponent<Animator>();
     }
 
-    public void PlayAnimation(string audioName, string animationName)
+    public override void PlayAnimation(string audioName, string animationName)
     {
-        audioSource.clip = Resources.Load<AudioClip>(audioName);
+        base.PlayAnimation(audioName, animationName);
         ((AnimatorOverrideController)animator.runtimeAnimatorController)["Speak"] = Resources.Load<AnimationClip>(animationName);
-
         animator.SetTrigger("Speak");
-        audioSource.Play();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Reset()
     {
-        
+        base.Reset();
+        animator.ResetTrigger("Stop");
     }
 }
