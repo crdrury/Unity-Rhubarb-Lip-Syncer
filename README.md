@@ -42,11 +42,14 @@ I'll be describing the setup using Blender. The actual process may be different 
 
 Now you can add the LipSyncer3D Script to any game object in your scene. Set your object references and variables (detailed below).
 
-![LipSyncer3D Editor GUI](https://user-images.githubusercontent.com/39220609/115964092-bde5ea80-a4f0-11eb-9c6a-d91e3e35764f.png)
+![LipSyncer3D Editor GUI](https://user-images.githubusercontent.com/39220609/123710122-2e382180-d83c-11eb-95d8-ea3f177bab55.png)
 
 * **Parent Object-** Animated objects must be this object, or children of this object. The animation should ultimately be applied to this object.
 * **Source Audio-** Audio file containing the dialog to be lip synced.
 * **Source Audio Script (Optional)-** A text transcription of the dialog in **Source Audio**. If included, the Rhubarb analysis will give more accurate results.
+
+* **Extended Mouth Shapes-** Rhubarb allows you to exclude G, H, and X mouth shapes, so you can disable them here if not using them.
+* **Phonetic-** By default (unchecked), Rhubarb uses PocketSphinx for the analysis. PocketSphinx will give ther best results, but only for English speech, so non-English audio will require the phonetic analyzer.
 
 * **Mouth Objects-** References to all game objects that have mouth shape keys for this animation.
 * **Mouth Intensity-** 1-100 how much each mouth shape will be blended into the animation. Raise or lower this if the mouth movements are too exaggerated or too subtle.
