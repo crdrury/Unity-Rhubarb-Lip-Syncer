@@ -14,7 +14,7 @@ public abstract class LipSyncer : MonoBehaviour
     public TextAsset sourceAudioScript;
     [Tooltip("Rhubarb analysis result file. This will initially be empy and will be filled once analysis is complete")]
     public TextAsset phonemeList;
-    [Tooltip("Animation will be saved to " + LipSyncConstants.AnimationDirectory + "[Animation Name].anim")]
+    [Tooltip("Animation will be saved to " + LipSyncConstants.AnimationLocalDirectory + "[Animation Name].anim")]
     public string animationName;
     [Tooltip("G shape- 'F' or 'V' sound")]
     public bool extendG = true;
@@ -44,6 +44,9 @@ public abstract class LipSyncer : MonoBehaviour
 
     public virtual bool CheckForErrors(int operation)
     {
+        string path = AssetDatabase.GetAssetPath(MonoScript.FromMonoBehaviour(this));
+        LipSyncConstants.AnimationDirectory = path.Substring(0, path.IndexOf("Scripts") - 1) + LipSyncConstants.AnimationLocalDirectory;
+
         error = false;
 
         if (parentObject == null)
@@ -79,8 +82,6 @@ public abstract class LipSyncer : MonoBehaviour
             args += " -d \"" + AssetDatabase.GetAssetPath(sourceAudioScript) + "\"";
 
         args +=  " \"" + audioPath + "\"";
-
-//        print(args);
 
         ProcessStartInfo info = new ProcessStartInfo()
         {
